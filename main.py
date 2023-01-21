@@ -14,7 +14,6 @@ class MainWindow(tk.Tk):
         self.answer = DoubleVar()
 
         self.title('Численное дифференцирование')
-        self.geometry('400x200')
 
         self.aLabel = Label(text='Введите нижний предел')
         self.aEnter = Entry(textvariable=self.a)
@@ -22,25 +21,25 @@ class MainWindow(tk.Tk):
         self.bEnter = Entry(textvariable=self.b)
         self.chooseLabel = Label(text='Выберите метод')
 
-        self.enterButton = Button(text='Рассчитать', command=self.integrate(), width=17)
+        self.enterButton = Button(text='Рассчитать', command=self.integrate, width=17)
 
         self.answerLabel = Entry(textvariable=self.answer, state=tk.DISABLED)
 
         self.methodsChoose = ttk.Combobox(self, textvariable=self.chosenMethod, width=17)
         self.methodsChoose['values'] = self.methods
 
-        self.aLabel.pack()
-        self.aEnter.pack()
-        self.bLabel.pack()
-        self.bEnter.pack()
-        self.chooseLabel.pack()
-        self.methodsChoose.pack()
-        self.enterButton.pack()
-        self.answerLabel.pack()
+        self.aLabel.pack(padx=100, pady=5)
+        self.aEnter.pack(padx=100, pady=5)
+        self.bLabel.pack(padx=100, pady=5)
+        self.bEnter.pack(padx=100, pady=5)
+        self.chooseLabel.pack(padx=100, pady=5)
+        self.methodsChoose.pack(padx=100, pady=5)
+        self.enterButton.pack(padx=100, pady=5)
+        self.answerLabel.pack(padx=100, pady=5)
 
     def integrate(self):
-        a1 = float(self.aEnter.get())
-        b1 = float(self.bEnter.get())
+        a1 = float(self.a.get())
+        b1 = float(self.b.get())
         dx = (b1 - a1) / 10000
 
         if self.chosenMethod.get() == 'Метод прямоугольника':
