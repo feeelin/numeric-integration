@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import *
 from tkinter import ttk
+from matplotlib import pyplot as plt
 
 
 class MainWindow(tk.Tk):
@@ -114,6 +115,28 @@ class MainWindow(tk.Tk):
                 continue
             else:
                 self.function += i
+
+        self.plotButton.pack(pady=5)
+
+    def plot(self):
+        x_arr = []
+        y_arr = []
+
+        start = float(self.a.get())
+        stop = float(self.b.get())
+
+        while start <= stop:
+            x_arr.append(start)
+            y_arr.append(start ** 2)
+            start += 0.1
+
+        plt.subplots(num="График функции")
+
+        plt.plot(x_arr, y_arr)
+        plt.title(f'График функции y = x^2 на промежутке от {self.a.get()} до {self.b.get()}')
+        plt.ylabel('ось X')
+        plt.xlabel('ось Y')
+        plt.show()
 
 
 if __name__ == '__main__':
