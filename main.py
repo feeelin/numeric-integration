@@ -45,6 +45,7 @@ class MainWindow(tk.Tk):
         self.methodsChoose.pack(padx=100, pady=5)
         self.enterButton.pack(padx=100, pady=5)
         self.answerLabel.pack(padx=100, pady=5)
+        self.plotButton.pack(pady=5)
 
     def integrate(self):
         a1 = float(self.a.get())
@@ -83,7 +84,6 @@ class MainWindow(tk.Tk):
             y = ((b1 - a1) / 30000) * (eval(self.function.format(a1)) + eval(self.function.format(a1)) + (4 * y1) +
                                        (2 * y2))
             self.answer.set(y)
-        self.plotButton.pack(pady=5)
 
     def plot(self):
         x_arr = []
