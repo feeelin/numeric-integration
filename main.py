@@ -10,9 +10,9 @@ class MainWindow(tk.Tk):
 
         self.function = ''
         self.f = StringVar()
-        self.functionLabel = Label(text='Введите функцию в формате языка Python')
+        self.functionLabel = Label(text='Enter the function in Python format')
         self.functionEnter = Entry(textvariable=self.f)
-        self.functionButton = Button(command=self.update, text='Загрузить функцию')
+        self.functionButton = Button(command=self.update, text='Upload function')
 
         self.functionLabel.pack(pady=5)
         self.functionEnter.pack(padx=100, pady=5)
@@ -21,21 +21,21 @@ class MainWindow(tk.Tk):
         self.a = DoubleVar()
         self.b = DoubleVar()
         self.chosenMethod = StringVar()
-        self.methods = ('Метод прямоугольника', 'Метод трапеции', 'Метод Симпсона')
+        self.methods = ('Rectangle method', 'Trapezoid method', "Simpson's method")
         self.answer = DoubleVar()
 
-        self.title('Численное дифференцирование')
-        self.aLabel = Label(text='Введите нижний предел')
+        self.title('Numeric integration')
+        self.aLabel = Label(text='Enter a lower border')
         self.aEnter = Entry(textvariable=self.a)
-        self.bLabel = Label(text='Введите верхний предел')
+        self.bLabel = Label(text='Enter a upper border')
         self.bEnter = Entry(textvariable=self.b)
-        self.chooseLabel = Label(text='Выберите метод')
-        self.enterButton = Button(text='Рассчитать', command=self.integrate, width=17)
+        self.chooseLabel = Label(text='Chose a method')
+        self.enterButton = Button(text='Calculate', command=self.integrate, width=17)
         self.answerLabel = Entry(textvariable=self.answer, state=tk.DISABLED)
         self.methodsChoose = ttk.Combobox(self, textvariable=self.chosenMethod, width=17)
         self.methodsChoose['values'] = self.methods
 
-        self.plotButton = Button(text='Построить график', command=self.plot)
+        self.plotButton = Button(text='Graph', command=self.plot)
 
         self.aLabel.pack(padx=100, pady=5)
         self.aEnter.pack(padx=100, pady=5)
@@ -52,7 +52,7 @@ class MainWindow(tk.Tk):
         b1 = float(self.b.get())
         dx = (b1 - a1) / 10000
 
-        if self.chosenMethod.get() == 'Метод прямоугольника':
+        if self.chosenMethod.get() == 'Rectangle method':
             y = 0
             x = a1
             while x < b1:
@@ -61,7 +61,7 @@ class MainWindow(tk.Tk):
             y = y * dx
             self.answer.set(y)
 
-        elif self.chosenMethod.get() == 'Метод трапеции':
+        elif self.chosenMethod.get() == 'Trapezoid method':
             y = 0
             x = a1 + dx
             while x < b1:
@@ -70,7 +70,7 @@ class MainWindow(tk.Tk):
             y = (y + (((eval(self.function.format(a1))) + (eval(self.function.format(a1)))) / 2)) * dx
             self.answer.set(y)
 
-        elif self.chosenMethod.get() == 'Метод Симпсона':
+        elif self.chosenMethod.get() == "Simpson's method":
             y1 = 0
             x = a1 + dx
             while x < (b1 - dx):
@@ -97,11 +97,11 @@ class MainWindow(tk.Tk):
             y_arr.append(eval(self.function.format(start)))
             start += 0.1
 
-        plt.subplots(num=f'График функции {self.f.get()}')
+        plt.subplots(num=f"Graph of the function {self.f.get()}")
         plt.plot(x_arr, y_arr)
-        plt.title(f'График функции {self.f.get()} на промежутке от {self.a.get()} до {self.b.get()}')
-        plt.ylabel('ось X')
-        plt.xlabel('ось Y')
+        plt.title(f"Graph of the function {self.f.get()} in the interval from {self.a.get()} to {self.b.get()}")
+        plt.ylabel('X')
+        plt.xlabel('Y')
         plt.show()
 
     def update(self):
