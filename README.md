@@ -11,3 +11,4 @@ Then you need to enter lower and upper border of integration and chose one of th
 Now you can press the remaining button and get an answer!
 
 You can also plot the selected interval of the function by clicking <b><i>another button</b></i> below
+
